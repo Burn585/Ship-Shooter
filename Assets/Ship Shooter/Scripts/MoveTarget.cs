@@ -18,8 +18,6 @@ public class MoveTarget : MonoBehaviour
         new Plane(Vector3.up, transform.position).Raycast(ray, out enter);
         Vector3 mouseInWorld = ray.GetPoint(enter);
 
-        Debug.Log(mouseInWorld);
-
         transform.position = mouseInWorld;
     }
 }

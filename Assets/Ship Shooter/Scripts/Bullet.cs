@@ -16,4 +16,14 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(_timeLife);
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<Tower>(out Tower tower))
+        {
+            Destroy(tower.gameObject);
+        }
+
+        Destroy(gameObject);
+    }
 }

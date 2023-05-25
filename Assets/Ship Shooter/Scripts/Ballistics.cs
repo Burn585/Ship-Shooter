@@ -15,7 +15,7 @@ public class Ballistics : MonoBehaviour
     {
         _spawnTransform.localEulerAngles = new Vector3(-_angleToDegrees, 0f, 0f);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             Shot();
         }
