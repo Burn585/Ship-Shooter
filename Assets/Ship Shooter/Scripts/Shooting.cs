@@ -1,27 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Ballistics : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] private Transform _targetTransform;
     [SerializeField] private float _angleToDegrees;
     [SerializeField] private Bullet _bullet;
 
+    public event UnityAction Shot;
+
     private float g = Physics.gravity.y;
 
     private void Update()
     {
-        _spawnTransform.localEulerAngles = new Vector3(-_angleToDegrees, 0f, 0f);
+        float spawnY = 0f;
+        float spawnZ = 0f;
+
+        _spawnTransform.localEulerAngles = new Vector3(-_angleToDegrees, spawnY, spawnZ);
 
         if (Input.GetMouseButtonUp(0))
         {
-            Shot();
+            Fire();
         }
     }
 
-    private void Shot()
+    private void Fire()
     {
         Vector3 fromTo = _targetTransform.position - transform.position;
         Vector3 fromToXZ = new Vector3(fromTo.x, 0f, fromTo.z);
@@ -38,5 +44,6 @@ public class Ballistics : MonoBehaviour
 
         var bullet = Instantiate(_bullet, _spawnTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = _spawnTransform.forward * v;
+        Shot?.Invoke();
     }
 }

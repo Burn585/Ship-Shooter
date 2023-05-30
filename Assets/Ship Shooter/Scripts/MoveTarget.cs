@@ -6,11 +6,6 @@ public class MoveTarget : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
 
-    private void Start()
-    {
-        _camera = Camera.main;
-    }
-
     private void Update()
     {
         float enter;

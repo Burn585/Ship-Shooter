@@ -5,10 +5,14 @@ using DG.Tweening;
 
 public class InfiniteRotation : MonoBehaviour
 {
+    private const int _infiniteLoop = -1;
     private float _speed = 15;
+    private float _rotateX = 0f;
+    private float _rotateY = -360f;
+    private float _rotateZ = 0f;
 
     private void Start()
     {
-        transform.DORotate(new Vector3(0f, -360f, 0f), _speed, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetRelative().SetEase(Ease.Linear);
+        transform.DORotate(new Vector3(_rotateX, _rotateY, _rotateZ), _speed, RotateMode.FastBeyond360).SetLoops(_infiniteLoop, LoopType.Restart).SetRelative().SetEase(Ease.Linear);
     }
 }
