@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeLife = 5;
-
+    
     private void Start()
     {
         StartCoroutine(TimeLife());
@@ -17,9 +17,9 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.TryGetComponent<Tower>(out Tower tower))
+        if (collision.collider.TryGetComponent<Tower>(out Tower tower))
         {
             Destroy(tower.gameObject);
         }
