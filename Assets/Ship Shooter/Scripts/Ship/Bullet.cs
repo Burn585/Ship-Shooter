@@ -24,6 +24,11 @@ public class Bullet : MonoBehaviour
             Destroy(tower.gameObject);
         }
 
+        if (collision.collider.TryGetComponent<Wall>(out Wall wall))
+        {
+            Destroy(wall.gameObject);
+        }
+
         Destroy(gameObject);
     }
 }
