@@ -5,10 +5,16 @@ using UnityEngine.Events;
 
 public class GameEvent : MonoBehaviour
 {
-    //public event UnityAction<Transform> HitInGround;
+    public event UnityAction<float> HitCastle;
+    public event UnityAction Win;
 
-    //public void SendHitInGround(Transform point)
-    //{
-    //    HitInGround?.Invoke(point);
-    //}
+    public void SendHitCastle(float hit)
+    {
+        HitCastle?.Invoke(hit);
+    }
+
+    public void SendWinGame()
+    {
+        Win?.Invoke();
+    }
 }

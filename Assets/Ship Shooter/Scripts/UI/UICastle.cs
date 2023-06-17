@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Castle : MonoBehaviour
+public class UICastle : MonoBehaviour
 {
-    [SerializeField] private float _health;
     [SerializeField] private GameEvent _gameEvent;
- 
-    public float Health => _health;
+    [SerializeField] private Image _health;
 
     private void OnEnable()
     {
@@ -21,11 +20,6 @@ public class Castle : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
-        _health -= damage;
-
-        if(_health <= 0)
-        {
-            _gameEvent.SendWinGame();
-        }
+        _health.fillAmount -= damage;
     }
 }
