@@ -5,21 +5,24 @@ using UnityEngine.UI;
 
 public class UICastle : MonoBehaviour
 {
-    [SerializeField] private GameEvent _gameEvent;
     [SerializeField] private Image _health;
+    [SerializeField] private Castle _castle;
 
     private void OnEnable()
     {
-        _gameEvent.HitCastle += TakeDamage;
+        _castle.HitCastle += DrawHealth;
     }
 
     private void OnDisable()
     {
-        _gameEvent.HitCastle -= TakeDamage;
+        _castle.HitCastle -= DrawHealth;
     }
 
-    private void TakeDamage(float damage)
+    private void DrawHealth(float health)
     {
-        _health.fillAmount -= damage;
+        float rate = 100;
+
+        health /= rate;
+        _health.fillAmount = health;
     }
 }

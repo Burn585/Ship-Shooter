@@ -5,15 +5,16 @@ using UnityEngine;
 public class AttackHuman : MonoBehaviour
 {
     [SerializeField] private float _radius = 1;
-    [SerializeField] private float _hit = 0.01f;
+    [SerializeField] private float _hit = 1f;
     [SerializeField] private LayerMask _layerMask;
-    private GameEvent _gameEvent;
+
+    private Castle _castle;
     private bool _attack = false;
     private WaitForSeconds _delayHit = new WaitForSeconds(1f);
 
     private void Start()
     {
-        _gameEvent = FindObjectOfType<GameEvent>();
+        _castle = FindObjectOfType<Castle>();
     }
 
     private void Update()
@@ -29,8 +30,7 @@ public class AttackHuman : MonoBehaviour
     {
         while (true)
         {
-            _gameEvent.SendHitCastle(_hit);
-
+            _castle.TakeDamage(_hit);
             yield return _delayHit;
         }
     }
