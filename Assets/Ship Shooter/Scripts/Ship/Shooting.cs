@@ -9,10 +9,14 @@ public class Shooting : MonoBehaviour
     [SerializeField] private Transform _targetTransform;
     [SerializeField] private float _angleToDegrees;
     [SerializeField] private Bullet _bullet;
+    [SerializeField] private int _countBullets = 10;
 
     public event UnityAction Shot;
 
     private float g = Physics.gravity.y;
+
+    public int CountBullets => _countBullets;
+
 
     private void Update()
     {
@@ -21,7 +25,7 @@ public class Shooting : MonoBehaviour
 
         _spawnTransform.localEulerAngles = new Vector3(-_angleToDegrees, spawnY, spawnZ);
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && _countBullets > 0)
         {
             Fire();
         }
@@ -44,6 +48,7 @@ public class Shooting : MonoBehaviour
 
         var bullet = Instantiate(_bullet, _spawnTransform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = _spawnTransform.forward * v;
+        _countBullets--;
         Shot?.Invoke();
     }
 }

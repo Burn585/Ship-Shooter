@@ -6,21 +6,38 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private GameEvent _gameEvent;
+    [SerializeField] private Health _destroyCastle;
+    [SerializeField] private Canvas _WinMenu;
+    [SerializeField] private Shooting _shooting;
+    [SerializeField] private Spawner _spawner;
 
     private void OnEnable()
     {
-        _gameEvent.Win += EndGame;
+        _destroyCastle.Dead += WinGame;
+        _shooting.Shot += TryLose;
     }
 
     private void OnDisable()
     {
-        _gameEvent.Win -= EndGame;
+        _destroyCastle.Dead -= WinGame;
+        _shooting.Shot -= TryLose;
     }
 
-    private void EndGame()
+    private void WinGame()
     {
         Time.timeScale = 0;
-        Debug.Log("You win!");
+        _WinMenu.gameObject.SetActive(true);
+    }
+
+    private void LoseGame()
+    {
+        Time.timeScale = 0;
+        Debug.Log("You lose");
+    }
+
+    private void TryLose()
+    {
+        if(_shooting.CountBullets <= 0 && _spawner.LifeHuman > 0)
+            LoseGame();
     }
 }

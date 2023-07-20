@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICastle : MonoBehaviour
+public class UIHealthBar : MonoBehaviour
 {
-    [SerializeField] private Image _health;
-    [SerializeField] private Castle _castle;
+    [SerializeField] private Image _healthBar;
+    [SerializeField] private Health _health;
 
     private void OnEnable()
     {
-        _castle.HitCastle += DrawHealth;
+        _health.Hit += DrawHealth;
     }
 
     private void OnDisable()
     {
-        _castle.HitCastle -= DrawHealth;
+        _health.Hit -= DrawHealth;
     }
 
     private void DrawHealth(float health)
@@ -23,6 +23,6 @@ public class UICastle : MonoBehaviour
         float rate = 100;
 
         health /= rate;
-        _health.fillAmount = health;
+        _healthBar.fillAmount = health;
     }
 }

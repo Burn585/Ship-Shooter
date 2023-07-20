@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class AttackHuman : MonoBehaviour
 {
+    [SerializeField] private Health _castle;
     [SerializeField] private float _radius = 1;
     [SerializeField] private float _hit = 1f;
     [SerializeField] private LayerMask _layerMask;
 
-    private Castle _castle;
     private bool _attack = false;
     private WaitForSeconds _delayHit = new WaitForSeconds(1f);
-
-    private void Start()
-    {
-        _castle = FindObjectOfType<Castle>();
-    }
 
     private void Update()
     {
@@ -37,6 +32,6 @@ public class AttackHuman : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, _radius);
+        //Gizmos.DrawSphere(transform.position, _radius);
     }
 }

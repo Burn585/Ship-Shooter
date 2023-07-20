@@ -10,7 +10,10 @@ public class MoveTarget : MonoBehaviour
     {
         float enter;
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        new Plane(Vector3.up, transform.position).Raycast(ray, out enter);
+        RaycastHit hit;
+        //new Plane(Vector3.up, transform.position).Raycast(ray, out enter);
+        Physics.Raycast(ray, out hit);
+        new Plane(Vector3.up, hit.point).Raycast(ray, out enter);
         Vector3 mouseInWorld = ray.GetPoint(enter);
 
         transform.position = mouseInWorld;
