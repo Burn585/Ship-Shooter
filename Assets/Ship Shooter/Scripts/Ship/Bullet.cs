@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeLife = 5;
+    [SerializeField] private ParticleSystem _explosion;
 
     private float _bonus = 1;
 
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.collider.TryGetComponent<Destroyable>(out Destroyable destroyable))
         {
+            Instantiate(_explosion, this.transform.position, Quaternion.identity);
             Destroy(destroyable.gameObject);
             Destroy(this.gameObject);
         }

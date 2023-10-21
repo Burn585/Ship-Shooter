@@ -4926,6 +4926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeLife: 7
+  _explosion: {fileID: 3216355451091915795, guid: 71cb3b9b5aee73342a18576f03d6a00a, type: 3}
 --- !u!54 &3408320270236946808
 Rigidbody:
   m_ObjectHideFlags: 0
