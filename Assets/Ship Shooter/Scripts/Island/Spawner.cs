@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Human _prefab;
     [SerializeField] private float _amountPool;
 
-    private Queue<Human> _humen = new Queue<Human>();
-    private float _lifeHuman = 0;
+    public event UnityAction HumanDead;
+    public event UnityAction HumanBorn;
 
-    public float LifeHuman => _lifeHuman;
+    private Queue<Human> _humen = new Queue<Human>();
+    private float _alifeHuman = 0;
+
+    public float AlifeHuman => _alifeHuman;
 
     private void Start()
     {
@@ -28,6 +32,8 @@ public class Spawner : MonoBehaviour
     {
         _humen.Enqueue(human);
         human.gameObject.SetActive(false);
+        _alifeHuman--;
+        HumanDead?.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -49,6 +55,8 @@ public class Spawner : MonoBehaviour
 
                 human.transform.position = bullet.transform.position;
                 human.gameObject.SetActive(true);
+                _alifeHuman++;
+                HumanBorn?.Invoke();
             }
         }
     }

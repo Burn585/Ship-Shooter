@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] private Spawner _spawner;
+    //[SerializeField] private Spawner _spawner;
     [SerializeField] private float _speed = 5;
+    [SerializeField] private float _damage = 10;
 
     private Transform _target;
     private float _distanceDestroy = 0.1f;
@@ -27,9 +28,9 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent<Human>(out Human human))
+        if (collision.collider.TryGetComponent<Health>(out Health health))
         {
-            _spawner.AddInQueue(human);
+            health.TakeDamage(_damage);
         }
 
         Destroy(this.gameObject);

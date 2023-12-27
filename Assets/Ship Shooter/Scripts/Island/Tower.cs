@@ -38,8 +38,10 @@ public class Tower : MonoBehaviour
     private void Shot(Transform target)
     {
         Vector3 derection = transform.position - target.position;
+        Vector3 offsetShotPoint = new Vector3(0f, 2f, 0f);
+        Vector3 shotPoint = transform.position + offsetShotPoint;
 
-        var arrow = Instantiate(_arrow, transform.position, Quaternion.identity, transform.parent);
+        var arrow = Instantiate(_arrow, shotPoint, Quaternion.identity, transform.parent);
         arrow.gameObject.SetActive(true);
         arrow.SetTarget(target);
     }

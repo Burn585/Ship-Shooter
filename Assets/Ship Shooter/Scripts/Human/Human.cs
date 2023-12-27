@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    [SerializeField] Health _health;
-    [SerializeField] Spawner _spawner;
+    [SerializeField] private Health _health;
+    [SerializeField] private Spawner _spawner;
 
     private void OnEnable()
     {
