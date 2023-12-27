@@ -202,7 +202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b2fbbd02e7097ba4592355dff146bae4, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b2fbbd02e7097ba4592355dff146bae4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -314,8 +314,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9960877, y: 3.601836, z: 0.99547386}
-  m_Center: {x: -0.0058497787, y: 1.8014809, z: -0.0022630692}
+  m_Size: {x: 1.9960877, y: 3.2932596, z: 0.99547386}
+  m_Center: {x: -0.0058497787, y: 1.6471927, z: -0.0022630692}
 --- !u!208 &7764465200357707806
 NavMeshObstacle:
   m_ObjectHideFlags: 0

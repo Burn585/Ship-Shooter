@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 public class Shooting : MonoBehaviour
@@ -25,7 +26,7 @@ public class Shooting : MonoBehaviour
 
         _spawnTransform.localEulerAngles = new Vector3(-_angleToDegrees, spawnY, spawnZ);
 
-        if (Input.GetMouseButtonUp(0) && _countBullets > 0)
+        if (Input.GetMouseButtonUp(0) && _countBullets > 0 && !EventSystem.current.IsPointerOverGameObject())
         {
             Fire();
         }
