@@ -8,16 +8,26 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] private Transform _targetTransform;
-    [SerializeField] private float _angleToDegrees;
     [SerializeField] private Bullet _bullet;
     [SerializeField] private int _countBullets = 10;
+    [SerializeField] private UIChangeAngle _btnNextAngle;
 
     public event UnityAction Shot;
 
+    private float _angleToDegrees;
     private float g = Physics.gravity.y;
 
     public int CountBullets => _countBullets;
 
+    private void OnEnable()
+    {
+        _btnNextAngle.ChangeAngle += NextAngle;
+    }
+
+    private void OnDisable()
+    {
+        _btnNextAngle.ChangeAngle -= NextAngle;
+    }
 
     private void Update()
     {
@@ -51,5 +61,10 @@ public class Shooting : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = _spawnTransform.forward * v;
         _countBullets--;
         Shot?.Invoke();
+    }
+
+    private void NextAngle(int angle)
+    {
+        _angleToDegrees = angle;
     }
 }
